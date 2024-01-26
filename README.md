@@ -1,4 +1,4 @@
-# Installing Prometheus &amp; Grafana Monitoring (Ubuntu/Debian)
+# Installing Prometheus &amp; Grafana Monitoring
 
 This Bash script automates the installation of Prometheus and Grafana monitoring on an Ubuntu VPS.
 
