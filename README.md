@@ -41,7 +41,7 @@ sudo -i
 Then:
 
 ```bash
-wget "https://raw.githubusercontent.com/hawshemi/Linux-Optimizer/main/linux-optimizer.sh" -O linux-optimizer.sh && chmod +x linux-optimizer.sh && bash linux-optimizer.sh 
+wget "https://raw.githubusercontent.com/Phoenix-999/Installing-Grafana-Monitoring/main/Installing-Grafana-Monitoring.sh" -O Installing-Grafana-Monitoring.sh && chmod +x Installing-Grafana-Monitoring.sh && bash Installing-Grafana-Monitoring.sh
 ```
 
 After the script successfully completes, reboot your system using the following command:
