@@ -9,6 +9,8 @@ This Bash script automates the installation of Prometheus and Grafana monitoring
 
 ### Step 1: VPS IP Address Required
   * The script will require your VPS IP address to perform and configure the necessary files for accurate monitoring of your system.
+    ![Screenshot 2024-01-26 at 19 04 22](https://github.com/Phoenix-999/Installing-Grafana-Monitoring/assets/127796122/bba3acdd-4495-4a8a-96c2-87b208f4911e)
+
 
 ### Step 2: Update and Upgrade Your System
   * Ensure that your system is up-to-date with the necessary updates and upgrades.
@@ -44,7 +46,12 @@ Then:
 wget "https://raw.githubusercontent.com/Phoenix-999/Installing-Grafana-Monitoring/main/Installing-Grafana-Monitoring.sh" -O Installing-Grafana-Monitoring.sh && chmod +x Installing-Grafana-Monitoring.sh && bash Installing-Grafana-Monitoring.sh
 ```
 
-After the script successfully completes, reboot your system using the following command:
+After the script successfully completes, you should see a message similar to the one below. Please take note of it and reboot the server
+
+![Screenshot 2024-01-26 at 18 56 14](https://github.com/Phoenix-999/Installing-Grafana-Monitoring/assets/127796122/776ff8a6-7c0b-4a20-aa5c-b6cd287dbee0)
+
+
+Reboot your system using the following command:
 
 ```bash
 sudo reboot now
