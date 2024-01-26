@@ -181,7 +181,7 @@ echo -e "${GREEN}Prometheus & Grafana Monitoring installed and configured succes
 echo -e "${PURPLE}Please configure the Grafana Dashboard by navigating to the web address below${NC}"
 echo -e "${RED}http://$server_ip:3000/${NC}"
 echo -e "${PURPLE}Please following the visual instructions on the GitHub page${NC}"
-echo -e "${CYAN}https://github.com/Phoenix-999${NC}"
+echo -e "${CYAN}https://github.com/Phoenix-999/Installing-Grafana-Monitoring${NC}"
 echo -e "${BLUE}***********************************************************************************${NC}"
 
 ###############################
