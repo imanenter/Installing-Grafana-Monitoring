@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 ###############################
 # Define ANSI color codes
 ###############################
@@ -41,6 +42,7 @@ for attempt in {1..3}; do
     fi
 done
 
+
 ###############################
 # Stop and disable services
 ###############################
@@ -56,14 +58,7 @@ sudo systemctl disable grafana-server
 # Remove installed packages
 ###############################
 
-sudo apt-get remove --purge prometheus -y
-
-# Check if node_exporter is installed before attempting removal
-if dpkg -l | grep -q node_exporter; then
-    sudo apt-get remove --purge node_exporter -y
-fi
-
-sudo apt-get remove --purge grafana-enterprise -y
+sudo apt-get remove --purge prometheus node_exporter grafana-enterprise -y
 
 # Remove configuration files and directories
 sudo rm -rf /etc/prometheus
@@ -74,10 +69,10 @@ sudo rm -f /etc/prometheus/prometheus.yml
 sudo rm -f /usr/sbin/grafana-server
 sudo rm -f /etc/apt/sources.list.d/grafana.list
 
-# Remove the script file
-sudo rm -f /Installing-Grafana-Monitoring.sh
-
+###############################
 # Reload systemd
+###############################
+
 sudo systemctl daemon-reload
 
 ###############################
@@ -86,6 +81,11 @@ sudo systemctl daemon-reload
 
 sudo ufw delete allow 9090/tcp
 sudo ufw delete allow 3000/tcp
+
+###############################
+# Remove the script file
+###############################
+sudo rm -f /Installing-Grafana-Monitoring.sh
 
 ###############################
 # Final message
