@@ -86,6 +86,7 @@ sudo ufw delete allow 3000/tcp
 # Remove the script file
 ###############################
 sudo rm -rf /Installing-Grafana-Monitoring.sh
+sudo rm -rf node_exporter-1.7.0.linux-amd64
 
 ###############################
 # Final message
