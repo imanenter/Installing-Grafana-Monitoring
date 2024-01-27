@@ -26,6 +26,9 @@ This Bash script automates the installation of Prometheus and Grafana monitoring
   * Ensure Grafana is Downloaded, Installed, and Automatically Configured from the Main Source on Your System
 
 ## Prerequisites:
+
+###  Ubuntu & Debian linux-amd64
+
   * Ensure that the sudo and wget packages are installed on your system:
 
 Ubuntu & Debian:
