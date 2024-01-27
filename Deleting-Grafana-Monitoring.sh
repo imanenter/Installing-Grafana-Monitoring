@@ -61,7 +61,10 @@ sudo systemctl disable grafana-server
 sudo apt-get remove --purge prometheus node_exporter grafana-enterprise -y
 
 # Remove configuration files and directories
-sudo rm -rf /etc/prometheus /etc/node_exporter /etc/systemd/system/prometheus.service /etc/systemd/system/node_exporter.service
+sudo rm -rf /etc/prometheus
+sudo rm -f /etc/systemd/system/prometheus.service
+sudo rm -f /etc/node_exporter/node_exporter
+sudo rm -f /etc/systemd/system/node_exporter.service
 sudo rm -f /etc/prometheus/prometheus.yml
 sudo rm -f /usr/sbin/grafana-server
 sudo rm -f /etc/apt/sources.list.d/grafana.list
