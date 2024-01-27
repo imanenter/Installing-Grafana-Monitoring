@@ -85,7 +85,7 @@ sudo ufw delete allow 3000/tcp
 ###############################
 # Remove the script file
 ###############################
-sudo rm -f /Installing-Grafana-Monitoring.sh
+sudo rm -rf /Installing-Grafana-Monitoring.sh
 
 ###############################
 # Final message
