@@ -156,7 +156,7 @@ sudo systemctl status prometheus | grep "Active: active" | sed -e "s/Active: act
 
 sudo apt-get install -y adduser libfontconfig1 musl
 wget https://dl.grafana.com/enterprise/release/grafana-enterprise_10.3.1_arm64.deb
-sudo dpkg -i grafana-enterprise_10.2.3_amd64.deb
+sudo dpkg -i grafana-enterprise_10.3.1_arm64.deb
 
 # Restart, enable, and check status of Grafana
 sudo systemctl restart grafana-server
