@@ -197,6 +197,8 @@ install_grafana() {
 
     if [ "$system_architecture" == "amd64" ] && [ "$machine_architecture" == "x86_64" ]; then
         grafana_arch="amd64"
+    elif [ "$system_architecture" == "arm64" ] && [ "$machine_architecture" == "aarch64" ]; then
+        grafana_arch="arm64"
     else
         print_error "Unsupported architecture: $system_architecture / $machine_architecture"
         exit 1
