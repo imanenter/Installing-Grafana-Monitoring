@@ -67,7 +67,7 @@ sudo rm -f /usr/sbin/grafana-server
 sudo rm -f /etc/apt/sources.list.d/grafana.list
 
 # Remove the script file
-sudo rm -f /path/to/Installing-Grafana-Monitoring.sh
+sudo rm -f /Installing-Grafana-Monitoring.sh
 
 # Remove unnecessary files
 cleanup
