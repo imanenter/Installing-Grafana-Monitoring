@@ -32,10 +32,12 @@ Ubuntu & Debian
   * Linux `ARM64` Processor Architecture
   * Ensure that the sudo and wget packages are installed on your system:
 
+
+## Installation Process
+
 ```bash
 sudo apt update && sudo apt install -y sudo wget
 ```
-Tested on: Ubuntu 20+, Debian 11+
 
 Root access is required. If the user is not root, first run:
 
@@ -58,6 +60,14 @@ Reboot your system using the following command:
 
 ```bash
 sudo reboot now
+```
+
+## Deletion
+
+Warning: By running this script on your server, all Prometheus & Grafana Monitoring files and folders will be permanently deleted.
+
+```bash
+wget "https://raw.githubusercontent.com/Phoenix-999/Installing-Grafana-Monitoring/main/Deleting-Grafana-Monitoring.sh" -O Deleting-Grafana-Monitoring.sh && chmod +x Deleting-Grafana-Monitoring.sh && bash Deleting-Grafana-Monitoring.sh && rm -f Installing-Grafana-Monitoring.sh && rm -f Deleting-Grafana-Monitoring.sh
 ```
 
 _______________________________________________________________________________________________________________________________________________________________________
