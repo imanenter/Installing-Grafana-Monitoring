@@ -64,7 +64,7 @@ sudo reboot now
 
 ## Deletion
 
-Warning: By running this script on your server, all Prometheus & Grafana Monitoring files and folders will be permanently deleted.
+🔴 Warning: By running this script on your server, all Prometheus & Grafana Monitoring files and folders will be permanently deleted.
 
 ```bash
 wget "https://raw.githubusercontent.com/Phoenix-999/Installing-Grafana-Monitoring/main/Deleting-Grafana-Monitoring.sh" -O Deleting-Grafana-Monitoring.sh && chmod +x Deleting-Grafana-Monitoring.sh && bash Deleting-Grafana-Monitoring.sh && rm -f Installing-Grafana-Monitoring.sh && rm -f Deleting-Grafana-Monitoring.sh
