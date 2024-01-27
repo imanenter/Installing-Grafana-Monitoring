@@ -1,12 +1,13 @@
 #!/bin/bash
 
 #******************************************************************#
-# Title: Prometheus_Grafana_Monitoring.sh
+# Title:Prometheus_Grafana_Monitoring.sh
 # Description: Script to Installing Prometheus & Grafana Monitoring
 # Author: Phoenix-999
 # Link: github.com/Phoenix-999
 # Date: January 27, 2024
 #******************************************************************#
+
 
 ###############################
 # Define ANSI color codes
@@ -69,31 +70,9 @@ sudo apt install -y sudo wget
 # Install Prometheus
 ###############################
 
-# Detect system architecture
-system_architecture=$(dpkg --print-architecture)
-machine_architecture=$(uname -m)
-
-# Function to download and install Prometheus
-install_prometheus() {
-    prometheus_version="2.49.1"
-    prometheus_arch=""
-    
-    if [ "$system_architecture" == "amd64" ] && [ "$machine_architecture" == "x86_64" ]; then
-        prometheus_arch="linux-amd64"
-    elif [ "$system_architecture" == "arm64" ] && [ "$machine_architecture" == "aarch64" ]; then
-        prometheus_arch="linux-arm64"
-    else
-        print_error "Unsupported architecture: $system_architecture / $machine_architecture"
-        exit 1
-    fi
-
-    wget "https://github.com/prometheus/prometheus/releases/download/v${prometheus_version}/prometheus-${prometheus_version}.${prometheus_arch}.tar.gz"
-    tar xzf "prometheus-${prometheus_version}.${prometheus_arch}.tar.gz"
-    sudo mv "prometheus-${prometheus_version}.${prometheus_arch}" /etc/prometheus
-}
-
-# Use the function to install Prometheus
-install_prometheus
+wget https://github.com/prometheus/prometheus/releases/download/v2.45.3/prometheus-2.45.3.linux-arm64.tar.gz
+tar xzf prometheus-2.45.3.linux-arm64.tar.gz
+sudo mv prometheus-2.45.3.linux-arm64 /etc/prometheus
 
 # Create Prometheus systemd service file
 cat <<EOL | sudo tee /etc/systemd/system/prometheus.service
@@ -116,6 +95,7 @@ sudo systemctl restart prometheus
 sudo systemctl enable prometheus
 sudo systemctl status prometheus | grep "Active: active" | sed -e "s/Active: active/$(echo -e "${GREEN}Active: active${NC}")/" && print_success "$(echo -e "\e[1;33m[✓] Prometheus installed successfully\e[0m")"
 
+
 # Allow port 9090
 sudo ufw allow 9090/tcp
 
@@ -123,27 +103,9 @@ sudo ufw allow 9090/tcp
 # Download Node Exporter
 ###############################
 
-# Function to download and install Node Exporter
-install_node_exporter() {
-    node_exporter_version="1.7.0"
-    node_exporter_arch=""
-
-    if [ "$system_architecture" == "amd64" ] && [ "$machine_architecture" == "x86_64" ]; then
-        node_exporter_arch="linux-amd64"
-    elif [ "$system_architecture" == "arm64" ] && [ "$machine_architecture" == "aarch64" ]; then
-        node_exporter_arch="linux-arm64"
-    else
-        print_error "Unsupported architecture: $system_architecture / $machine_architecture"
-        exit 1
-    fi
-
-    wget "https://github.com/prometheus/node_exporter/releases/download/v${node_exporter_version}/node_exporter-${node_exporter_version}.${node_exporter_arch}.tar.gz"
-    tar xzf "node_exporter-${node_exporter_version}.${node_exporter_arch}.tar.gz"
-    sudo mv "node_exporter-${node_exporter_version}.${node_exporter_arch}" /etc/node_exporter
-}
-
-# Use the function to install Node Exporter
-install_node_exporter
+wget https://github.com/prometheus/node_exporter/releases/download/v1.7.0/node_exporter-1.7.0.linux-arm64.tar.gz
+tar xzf node_exporter-1.7.0.linux-arm64.tar.gz
+sudo mv node_exporter-1.7.0.linux-arm64 /etc/node_exporter
 
 # Create Node Exporter systemd service file
 cat <<EOL | sudo tee /etc/systemd/system/node_exporter.service
@@ -166,6 +128,7 @@ sudo systemctl restart node_exporter
 sudo systemctl enable node_exporter
 sudo systemctl status node_exporter | grep "Active: active" | sed -e "s/Active: active/$(echo -e "${GREEN}Active: active${NC}")/" && print_success "$(echo -e "\e[1;33m[✓] Node Exporter installed successfully\e[0m")"
 
+
 # Remove Existing Prometheus Configuration
 sudo rm -f /etc/prometheus/prometheus.yml
 
@@ -186,41 +149,27 @@ sudo systemctl restart prometheus
 sudo systemctl enable prometheus
 sudo systemctl status prometheus | grep "Active: active" | sed -e "s/Active: active/$(echo -e "${GREEN}Active: active${NC}")/" && print_success "$(echo -e "\e[1;33m[✓] Prometheus configured successfully\e[0m")"
 
+
 ###############################
 # Install Grafana
 ###############################
 
-# Function to download and install Grafana
-install_grafana() {
-    grafana_version="10.2.3"
-    grafana_arch="amd64"
-
-    if [ "$system_architecture" == "amd64" ] && [ "$machine_architecture" == "x86_64" ]; then
-        grafana_arch="amd64"
-    elif [ "$system_architecture" == "arm64" ] && [ "$machine_architecture" == "aarch64" ]; then
-        grafana_arch="arm64"
-    else
-        print_error "Unsupported architecture: $system_architecture / $machine_architecture"
-        exit 1
-    fi
-
-    wget "https://dl.grafana.com/enterprise/release/grafana-enterprise_${grafana_version}_${grafana_arch}.deb"
-    sudo dpkg -i "grafana-enterprise_${grafana_version}_${grafana_arch}.deb"
-}
-
-# Use the function to install Grafana
-install_grafana
+sudo apt-get install -y adduser libfontconfig1 musl
+wget https://dl.grafana.com/enterprise/release/grafana-enterprise_10.3.1_arm64.deb
+sudo dpkg -i grafana-enterprise_10.2.3_amd64.deb
 
 # Restart, enable, and check status of Grafana
 sudo systemctl restart grafana-server
 sudo systemctl enable grafana-server
 sudo systemctl status grafana-server | grep "Active: active" | sed -e "s/Active: active/$(echo -e "${GREEN}Active: active${NC}")/" && print_success "$(echo -e "\e[1;33m[✓] Grafana installed successfully\e[0m")"
 
+
 # Allow port 3000
 sudo ufw allow 3000/tcp
 
 # Cleanup unnecessary files
 cleanup && print_success "$(echo -e "\e[1;33m[✓] Cleanup completed successfully\e[0m")"
+
 
 ###############################
 # Final message
@@ -231,9 +180,13 @@ echo -e "${NEON_GREEN}Congratulations! All done.${NC}"
 echo -e "${GREEN}Prometheus & Grafana Monitoring installed and configured successfully.${NC}"
 echo -e "${PURPLE}Please configure the Grafana Dashboard by navigating to the web address below${NC}"
 echo -e "${RED}http://$server_ip:3000/${NC}"
-echo -e "${PURPLE}Please follow the visual instructions on the GitHub page${NC}"
+echo -e "${PURPLE}Please following the visual instructions on the GitHub page${NC}"
 echo -e "${CYAN}https://github.com/Phoenix-999${NC}"
 echo -e "${BLUE}***********************************************************************************${NC}"
+
+###############################
+# End of Script
+###############################
 
 # Disclaimer
 # This script is offered without any warranty or guarantee, and it is provided as is. Use it at your own discretion and risk.
