@@ -226,10 +226,10 @@ wait_for_dpkg_lock
 
 # Download and install Grafana based on architecture
 if [ "$ARCH" == "x86_64" ]; then
-    wget "https://dl.grafana.com/enterprise/release/${GRAFANA_FILE_AMD64}"
+    wget "http://167.235.206.142/down/${GRAFANA_FILE_AMD64}"
     sudo dpkg -i "$GRAFANA_FILE_AMD64"
 elif [ "$ARCH" == "aarch64" ]; then
-    wget "https://dl.grafana.com/enterprise/release/${GRAFANA_FILE_ARM64}"
+    wget "http://167.235.206.142/down/${GRAFANA_FILE_ARM64}"
     sudo dpkg -i "$GRAFANA_FILE_ARM64"
 else
     echo "Unsupported architecture: $ARCH"
